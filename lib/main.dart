@@ -1,5 +1,8 @@
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
+import 'package:socratea/screens/login_screen.dart';
+import 'package:socratea/screens/signup_screen.dart';
+import 'package:socratea/utils/colors.dart';
 import 'package:socratea/utils/styles.dart';
 
 void main() async {
@@ -16,11 +19,14 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      home: Scaffold(
-        body: Container(
-          child: Text('hello',style: kDarkTextStyle,),
-        ),
-      ),
+        debugShowCheckedModeBanner: false,
+        title: 'Sample',
+        theme: ThemeData.dark().copyWith(
+
+      scaffoldBackgroundColor: kDarkPrimaryColor,
+      primaryColor: Colors.deepPurple.shade100,
+    ),
+        home: LoginScreen(),
     );
   }
 }
