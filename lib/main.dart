@@ -1,5 +1,7 @@
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
+import 'package:socratea/responsive/mobile_screen.dart';
+import 'package:socratea/screens/ProfileScreen.dart';
 import 'package:socratea/screens/login_screen.dart';
 import 'package:socratea/screens/signup_screen.dart';
 import 'package:socratea/utils/colors.dart';
@@ -25,7 +27,7 @@ class MyApp extends StatelessWidget {
 
       scaffoldBackgroundColor: mobileColor,
     ),
-        home: LoginScreen(),
+        home: MobileScreenLayout(),
     );
   }
 }

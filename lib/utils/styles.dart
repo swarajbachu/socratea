@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 import 'colors.dart';
 
 const kDarkTextStyle =   TextStyle(
-  color: kDarkPrimaryColor,
+  color: blueColor,
   fontSize: 20,
   fontWeight: FontWeight.bold,
 );

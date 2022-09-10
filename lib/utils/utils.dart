@@ -1,5 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:image_picker/image_picker.dart';
+import 'package:socratea/screens/DarshBoard.dart';
+
+import '../screens/ProfileScreen.dart';
 
 
 // for picking up image from gallery
@@ -20,4 +23,14 @@ showSnackBar(BuildContext context, String text) {
     ),
   );
 }
+
+List<String> classes = ['11','12',];
+
+
+List<Widget> homeScreenItems = [
+  const DashBoard(),
+  const Text('Chat Area'),
+  const ProfileScreen(),
+];
+
 
