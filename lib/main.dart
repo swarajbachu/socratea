@@ -21,10 +21,9 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
         debugShowCheckedModeBanner: false,
         title: 'Sample',
-        theme: ThemeData.dark().copyWith(
+        theme: ThemeData.light().copyWith(
 
-      scaffoldBackgroundColor: kDarkPrimaryColor,
-      primaryColor: Colors.deepPurple.shade100,
+      scaffoldBackgroundColor: mobileColor,
     ),
         home: LoginScreen(),
     );

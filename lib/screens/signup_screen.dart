@@ -94,8 +94,7 @@ class _SignupScreenState extends State<SignupScreen> {
               ),
               SvgPicture.asset(
                 'assets/logo.svg',
-                color: primaryColor,
-                height: 64,
+                height: 124,
               ),
               const SizedBox(
                 height: 64,
@@ -174,7 +173,7 @@ class _SignupScreenState extends State<SignupScreen> {
                   ),
                   child: !_isLoading
                       ? const Text(
-                    'Sign up',
+                    'Sign up',style: TextStyle(color: primaryColor),
                   )
                       : const CircularProgressIndicator(
                     color: primaryColor,

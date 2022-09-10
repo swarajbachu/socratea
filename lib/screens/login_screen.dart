@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:socratea/screens/signup_screen.dart';
+import 'package:socratea/utils/colors.dart';
 
 import '../resources/auth_methods.dart';
 import '../utils/utils.dart';
@@ -71,7 +72,7 @@ class _LoginScreenState extends State<LoginScreen> {
               ),
               SvgPicture.asset(
                 'assets/logo.svg',
-                height: 124,
+                height: 100,
               ),
               const SizedBox(
                 height: 64,
@@ -103,14 +104,14 @@ class _LoginScreenState extends State<LoginScreen> {
                     shape: RoundedRectangleBorder(
                       borderRadius: BorderRadius.all(Radius.circular(4)),
                     ),
-                    color: Colors.blueAccent,
+                    color: blueColor,
                   ),
                   child: !_isLoading
                       ? const Text(
-                    'Log in',
+                    'Log in',style: TextStyle(color: primaryColor),
                   )
-                      : const CircularProgressIndicator(
-                    color: Colors.deepPurple,
+                      :  CircularProgressIndicator(
+                    color: Colors.deepPurple.shade100,
                   ),
                 ),
               ),
