@@ -10,10 +10,13 @@ import 'package:socratea/utils/styles.dart';
 import 'package:socratea/utils/utils.dart';
 import 'package:socratea/utils/widgets/xpBar.dart';
 
+import '../resources/auth_methods.dart';
 import '../resources/firestore_methods.dart';
 import '../utils/widgets/basic_button.dart';
 import '../utils/widgets/text_feild.dart';
 import 'package:socratea/models/user.dart' as model;
+
+import 'login_screen.dart';
 
 class ProfileScreen extends StatefulWidget {
   final String uid;
@@ -61,24 +64,26 @@ class _ProfileScreenState extends State<ProfileScreen> {
       isLoading = false;
     });
   }
+
   getUserData() async {
     var userSnap = await FirebaseFirestore.instance
         .collection("userDetails")
         .where('uid', isEqualTo: FirebaseAuth.instance.currentUser!.uid)
         .get();
-    var userId = userSnap.docs[0]['userId'];
+    var userId = userSnap.docs[userSnap.docs.length - 1]['userId'];
     print(userId.runtimeType);
     var userDetailsSnap = await FirebaseFirestore.instance
-        .collection("userDetails").doc(userId).get();
+        .collection("userDetails")
+        .doc(userId)
+        .get();
     print(userDetailsSnap.data());
-    userDetails = userId.isEmpty? {}: userDetailsSnap.data()!;
+    userDetails = userId.isEmpty ? {} : userDetailsSnap.data()!;
     setState(() {
       print(userDetails);
-      _schoolNameController.text = userDetails['school']??'';
-      _educationNameController.text = userDetails['education']??'';
-      _rollNoController.text = userDetails['rollNo']??'';
-      _homeStateController.text = userDetails['state']??'';
-
+      _schoolNameController.text = userDetails['school'] ?? '';
+      _educationNameController.text = userDetails['education'] ?? '';
+      _rollNoController.text = userDetails['rollNo'] ?? '';
+      _homeStateController.text = userDetails['state'] ?? '';
     });
   }
 
@@ -97,6 +102,19 @@ class _ProfileScreenState extends State<ProfileScreen> {
       appBar: AppBar(
         title: const Text('Profile'),
         backgroundColor: blueColor,
+        actions: [
+          IconButton(
+            onPressed: () async {
+              await AuthMethods().signOut();
+              Navigator.of(context).pushReplacement(
+                MaterialPageRoute(
+                  builder: (context) => const LoginScreen(),
+                ),
+              );
+            },
+            icon: const Icon(Icons.logout),
+          ),
+        ],
       ),
       body: SingleChildScrollView(
         child: Container(
@@ -122,10 +140,10 @@ class _ProfileScreenState extends State<ProfileScreen> {
                 child: Column(
                   children: [
                     Row(mainAxisAlignment: MainAxisAlignment.start, children: [
-                      const CircleAvatar(
+                       CircleAvatar(
                         radius: 50,
                         backgroundImage:
-                            NetworkImage('https://i.stack.imgur.com/l60Hf.png'),
+                            NetworkImage(userData['photoUrl'] ?? ''),
                         backgroundColor: Colors.blueAccent,
                       ),
                       const SizedBox(
@@ -135,7 +153,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
                           Text(
-                            '${userData['fullname']}',
+                            '${userData['fullName']}',
                             style: kDarkTextStyle,
                           ),
                           Text(
@@ -182,7 +200,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
                 height: 10,
               ),
               TextFieldInput(
-                hintText:'School',
+                hintText: 'School',
                 textInputType: TextInputType.text,
                 textEditingController: _schoolNameController,
               ),
@@ -198,7 +216,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
                 height: 10,
               ),
               TextFieldInput(
-                hintText:'JEE/CUET roll number',
+                hintText: 'JEE/CUET roll number',
                 textInputType: TextInputType.text,
                 textEditingController: _rollNoController,
               ),
@@ -206,7 +224,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
                 height: 10,
               ),
               TextFieldInput(
-                hintText:'Home State',
+                hintText: 'Home State',
                 textInputType: TextInputType.text,
                 textEditingController: _homeStateController,
               ),
@@ -264,8 +282,8 @@ class _ProfileScreenState extends State<ProfileScreen> {
           .collection("userDetails")
           .where('uid', isEqualTo: FirebaseAuth.instance.currentUser!.uid)
           .get();
-      var userId = userSnap.docs[userSnap.docs.length-1]['uid'];
-      print(userId);
+      //var userId = userSnap.docs[userSnap.docs.length-1]['uid'];
+      //print(userId);
       // upload to storage and db
       String res = await FireStoreMethods().saveUserDetails(
           classes[classIndex],

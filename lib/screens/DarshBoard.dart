@@ -7,6 +7,7 @@ import 'package:flutter_svg/svg.dart';
 import 'package:socratea/screens/chat_area.dart';
 import 'package:socratea/utils/colors.dart';
 
+import '../providers/user_provider.dart';
 import '../utils/styles.dart';
 import '../utils/utils.dart';
 import '../utils/widgets/basic_button.dart';
@@ -51,8 +52,12 @@ class _DashBoardState extends State<DashBoard> {
 
   @override
   void initState() {
-    super.initState();
+    UserProvider refresh = UserProvider();
+    refresh.refreshUser();
     getData();
+    setState(() {
+    });
+    super.initState();
   }
 
   @override
@@ -72,7 +77,7 @@ class _DashBoardState extends State<DashBoard> {
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              Text('Welcome Back ${userData['fullname']}',style: kDarkTextStyle.copyWith(fontSize: MediaQuery.of(context).size.width*0.065),),
+              Text('Welcome Back ${userData['fullName']}',style: kDarkTextStyle.copyWith(fontSize: MediaQuery.of(context).size.width*0.065),),
               const SizedBox(height: 2,),
               Text('so where were we?',style: kDarkTextStyle.copyWith(fontSize: 20,color: Colors.grey.shade700),),
               const SizedBox(height: 20,),

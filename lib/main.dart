@@ -25,7 +25,6 @@ class MyApp extends StatelessWidget {
     return MultiProvider(
       providers: [
         ChangeNotifierProvider(create: (_) => UserProvider(),),
-
       ],
       child: MaterialApp(
         debugShowCheckedModeBanner: false,
@@ -38,7 +37,7 @@ class MyApp extends StatelessWidget {
             builder: (context, snapshot) {
               if (snapshot.connectionState == ConnectionState.active) {
                 if (snapshot.hasData) {
-                  return const MobileScreenLayout();
+                  return  MobileScreenLayout(uid: FirebaseAuth.instance.currentUser!.uid);
                 } else if (snapshot.hasError) {
                   return showSnackBar(context, '${snapshot.error}');
                 }

@@ -36,8 +36,11 @@ class AuthMethods {
       if (email.isNotEmpty ||
           password.isNotEmpty ||
           username.isNotEmpty ||
-          fullName.isNotEmpty ||
-          file != null) {
+          fullName.isNotEmpty
+      ||
+          file != null
+      )
+          {
         // registering user in auth with email and password
         UserCredential cred = await _auth.createUserWithEmailAndPassword(
           email: email,
@@ -50,11 +53,10 @@ class AuthMethods {
         model.User _user = model.User(
           username: username,
           uid: cred.user!.uid,
-          photoUrl: photoUrl,
+         photoUrl: photoUrl,
           email: email,
-          bio: fullName,
-          followers: [],
-          following: [],
+          fullName: fullName,
+
         );
 
 

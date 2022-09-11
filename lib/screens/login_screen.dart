@@ -1,3 +1,4 @@
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:socratea/screens/signup_screen.dart';
@@ -38,7 +39,7 @@ class _LoginScreenState extends State<LoginScreen> {
     if (res == 'success') {
       Navigator.of(context).pushAndRemoveUntil(
           MaterialPageRoute(
-            builder: (context) => const MobileScreenLayout(),
+            builder: (context) =>  MobileScreenLayout(uid: FirebaseAuth.instance.currentUser!.uid),
           ),
               (route) => false);
 

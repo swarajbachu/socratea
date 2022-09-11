@@ -1,3 +1,4 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:curved_navigation_bar/curved_navigation_bar.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
@@ -9,7 +10,8 @@ import '../utils/utils.dart';
 
 
 class MobileScreenLayout extends StatefulWidget {
-  const MobileScreenLayout({Key? key}) : super(key: key);
+  final String uid;
+  const MobileScreenLayout({Key? key, required this.uid}) : super(key: key);
 
   @override
   State<MobileScreenLayout> createState() => _MobileScreenLayoutState();
@@ -17,10 +19,40 @@ class MobileScreenLayout extends StatefulWidget {
 
 class _MobileScreenLayoutState extends State<MobileScreenLayout> {
   int _page = 0;
-  late PageController pageController; // for tabs animation
+  late PageController pageController;// for tabs animation
+
+  var userData ={};
+  bool isLoading = false;
+
+  getData() async {
+    setState(() {
+      isLoading = true;
+    });
+    try {
+      var userSnap = await FirebaseFirestore.instance
+          .collection('users')
+          .doc(widget.uid)
+          .get();
+      userData = userSnap.data()!;
+
+      setState(() {
+        print(userData);
+      });
+    } catch (e) {
+      showSnackBar(
+        context,
+        e.toString(),
+      );
+    }
+    setState(() {
+      isLoading = false;
+    });
+  }
+
 
   @override
   void initState() {
+    getData();
     super.initState();
     pageController = PageController();
   }
