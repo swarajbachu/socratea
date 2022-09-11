@@ -1,14 +1,19 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
+import 'package:socratea/providers/user_provider.dart';
 import 'package:socratea/utils/colors.dart';
 import 'package:socratea/utils/styles.dart';
 import 'package:socratea/utils/utils.dart';
 import 'package:socratea/utils/widgets/xpBar.dart';
 
 import '../utils/widgets/text_feild.dart';
+import 'package:socratea/models/user.dart' as model;
 
 class ProfileScreen extends StatefulWidget {
-  const ProfileScreen({Key? key}) : super(key: key);
+  final String uid;
+  const ProfileScreen({Key? key, required this.uid}) : super(key: key);
 
   @override
   State<ProfileScreen> createState() => _ProfileScreenState();
@@ -16,14 +21,50 @@ class ProfileScreen extends StatefulWidget {
 
 int classIndex = 0;
 int genderIndex = 0;
+bool isLoading = false;
 List<String> gender = ['male', 'female', 'Prefer Not to Say'];
 
 class _ProfileScreenState extends State<ProfileScreen> {
   final TextEditingController _schoolNameController = TextEditingController();
   final TextEditingController _educationNameController =
       TextEditingController();
+  var userData = {};
+
+  getData() async {
+    setState(() {
+      isLoading = true;
+    });
+    try {
+      var userSnap = await FirebaseFirestore.instance
+          .collection('users')
+          .doc(widget.uid)
+          .get();
+      userData = userSnap.data()!;
+
+      setState(() {
+        print(userData);
+      });
+    } catch (e) {
+      showSnackBar(
+        context,
+        e.toString(),
+      );
+    }
+    setState(() {
+      isLoading = false;
+    });
+  }
+
+  @override
+  void initState() {
+    super.initState();
+    getData();
+  }
+  //model.User user = Provider.of<UserProvider>(context).getUser;
+
   @override
   Widget build(BuildContext context) {
+
     return Scaffold(
       appBar: AppBar(
         title: const Text('Profile'),
@@ -64,9 +105,10 @@ class _ProfileScreenState extends State<ProfileScreen> {
                     Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
-                        const Text(
-                          'Tanisha',
+                         Text(
+                           '${userData['fullname']}',
                           style: kDarkTextStyle,
+
                         ),
                         Text(
                           '${classes[classIndex]}th Grade',

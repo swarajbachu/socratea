@@ -4,6 +4,7 @@ import 'package:socratea/screens/signup_screen.dart';
 import 'package:socratea/utils/colors.dart';
 
 import '../resources/auth_methods.dart';
+import '../responsive/mobile_screen.dart';
 import '../utils/utils.dart';
 import '../utils/widgets/text_feild.dart';
 
@@ -35,14 +36,11 @@ class _LoginScreenState extends State<LoginScreen> {
     String res = await AuthMethods().loginUser(
         email: _emailController.text, password: _passwordController.text);
     if (res == 'success') {
-      // Navigator.of(context).pushAndRemoveUntil(
-      //     MaterialPageRoute(
-      //       builder: (context) => const ResponsiveLayout(
-      //         mobileScreenLayout: MobileScreenLayout(),
-      //         webScreenLayout: WebScreenLayout(),
-      //       ),
-      //     ),
-      //         (route) => false);
+      Navigator.of(context).pushAndRemoveUntil(
+          MaterialPageRoute(
+            builder: (context) => const MobileScreenLayout(),
+          ),
+              (route) => false);
 
       setState(() {
         _isLoading = false;

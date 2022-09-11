@@ -1,18 +1,59 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:flutter/material.dart';
+import 'package:flutter/material.dart';
+import 'package:flutter/material.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
+import 'package:socratea/screens/chat_area.dart';
 import 'package:socratea/utils/colors.dart';
 
 import '../utils/styles.dart';
+import '../utils/utils.dart';
 
 
 class DashBoard extends StatefulWidget {
-  const DashBoard({Key? key}) : super(key: key);
+  final String uid;
+  const DashBoard({Key? key, required this.uid}) : super(key: key);
 
   @override
   State<DashBoard> createState() => _DashBoardState();
 }
 
 class _DashBoardState extends State<DashBoard> {
+  var userData = {};
+  bool isLoading = false;
+
+  getData() async {
+    setState(() {
+      isLoading = true;
+    });
+    try {
+      var userSnap = await FirebaseFirestore.instance
+          .collection('users')
+          .doc(widget.uid)
+          .get();
+      userData = userSnap.data()!;
+
+      setState(() {
+        print(userData);
+      });
+    } catch (e) {
+      showSnackBar(
+        context,
+        e.toString(),
+      );
+    }
+    setState(() {
+      isLoading = false;
+    });
+  }
+
+  @override
+  void initState() {
+    super.initState();
+    getData();
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -29,7 +70,7 @@ class _DashBoardState extends State<DashBoard> {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            Text(' Welcome Back Tanisha',style: kDarkTextStyle.copyWith(fontSize: 25),),
+            Text(' Welcome Back ${userData['fullname']}',style: kDarkTextStyle.copyWith(fontSize: 25),),
             const SizedBox(height: 2,),
             Text('  so where were we?',style: kDarkTextStyle.copyWith(fontSize: 20,color: Colors.grey.shade700),),
             const SizedBox(height: 20,),
@@ -57,7 +98,7 @@ class _DashBoardState extends State<DashBoard> {
             Text(' Not Satisfied witht the results?',style: kDarkTextStyle.copyWith(fontSize: 20,color: Colors.grey.shade700),),
             const SizedBox(height: 10,),
             GestureDetector(
-              onTap: (){},
+              onTap: ()=> Navigator.of(context).push(MaterialPageRoute(builder: (context)=> const ChatArea())),
               child: Container(
 
                 decoration: BoxDecoration(

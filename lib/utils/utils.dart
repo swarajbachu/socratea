@@ -1,3 +1,4 @@
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:socratea/screens/DarshBoard.dart';
@@ -28,9 +29,9 @@ List<String> classes = ['11','12',];
 
 
 List<Widget> homeScreenItems = [
-  const DashBoard(),
+  DashBoard(uid: FirebaseAuth.instance.currentUser!.uid),
   const Text('Chat Area'),
-  const ProfileScreen(),
+  ProfileScreen(uid: FirebaseAuth.instance.currentUser!.uid,),
 ];
 
 
