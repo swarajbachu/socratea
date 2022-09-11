@@ -1,0 +1,12 @@
+{
+  "type": "service_account",
+  "project_id": "socrateabot-oymv",
+  "private_key_id": "c6d46dc50da291f090e11c3858560f356b64589b",
+  "private_key": "-----BEGIN PRIVATE KEY-----\nMIIEvQIBADANBgkqhkiG9w0BAQEFAASCBKcwggSjAgEAAoIBAQDQt9vdfdYyQcpc\nTEW2bZD9QVoGDfLPNijt8VKuYR9ZTrJOTCtsVduryEFX5KnZJZSIyHjKRD9ZGMPV\nRUCEDcIDZeJzYDiyvSl9Tzatk77z/ljeQFxDx4wH7dYa0F5Cn3fpODbizSUXPHdG\nMzOckXbiY0fr9qM4E+EB8Ak+Uyu4LzYJjM9dRUPp1tqm9th4N3EyY0gjsrLyDUdI\nQT8wI3xlkax5tPyOvt+w76kasLXvtCgad4jSIxkdWjsca71C0GW4tfTnOibTYE8P\nD0pdTkGdN0m1ZMJAThmn01W3VdkEVO+o6gjDBWIaeMK/huFRE310KBOdy/9BPM/x\nVzELl+PbAgMBAAECggEAVu0D8lLKxyKUY21WqVwngvpZQmVDx13wnOyhOUP02O6I\nH0jk2tlFRF2CLVdsD6ZxnqgTenYDBhnk0almbbkHIQApWFDuPC7BHVHE3XTHlfnL\nzEB0zLvKS7EXtxIp98hPmf+SCFJVDMDfkgqYB7CjmTStCw6supm43+Q3DVB5SFsM\nWIhTZ+VOiFKOWd7uU24WBixdyP9GSNbvxDAzqVB9U8QXdjQyt0jfwyMzk8XrBDda\ntGlSK3WX8K+U/6gCO1nAmXVddheNibh+o2rmeGGxrFBHWsqTuL+I5LPRtqCywKag\nTPyZPfYV2ALBX5r27Sm/ikwZtxzvTSU2pgB5TlCnRQKBgQD1wzq+i3vP6J0pspQD\nk3G0CTgt8T/eNmrvVL//gHHmfhJ5+IjgoZ/HuAlMRbNaHwxx/D+Ait4eE3GqyPMr\nb+7XkZVMCFlCqQkZdYfXa6h5l0hmOxeec/bT8wuHc2RmLrrcwwycwl6Gq409ZnSg\n1N4L/7Gr68UfCqUsM+T5wF/EtwKBgQDZaZgTwMo0Qz6b5ijungpISgPpbTaXL4o7\nvzAoZcxlBbU87A0dyJMb5ITszXjpnOgedEgv7R53SWj0IK7CRfHq8Gez93J1qEd+\n8hsPP//skuJICTQA5mE6GhZzcBxMaMfz2Not4jkAK64DaPwORvnAjvnkQ1KwRCGM\nXXaTDWRd/QKBgDlGAyWuye7c7etuw5HFxcTINUB3rYOyuN8HqCr6GxE1JkcohXWc\nFOltWTVeNPr2q2bQ+1eQhU0LCP1dEVZ5Inc4ZUuv0mV3kThOrJambz/O4r94W/vA\nWLByPqiVWrt5fnC+P+00WuUVi7fYbauhkBHJx/Uh3/FpAK85dM5DZ84nAoGBALNk\nSbOi1DWjdrm0g/nANcPILsog73Z4J5t8+gObW7fPqegG7huxMJFHUdcDA83fRjg6\nwoWpJgZPcGZfwVNT23V7wFXiy3MB01yP8Hv41vchi8zcqyhC7969P+EolHEH1FUE\njaJmk5nscL0nlzNApTuZvd/3HPeMgBIN3JUh67sRAoGAMdLGLFpBntEagdsAdhb2\nm+tqDrhkC/yf3vgT/1jd6TdvYmjzmMDvMtUJKc/vtJK8XJphl+q8WgFJ6A8Bf05+\nlFMYGwjmj8WCD0vCelCJIn3dzGyM1X2S8goyhkw0zQGt35hRyL6WOk8ojRA1DGbX\nWBxKMHDQbDRrKJ9UO14d9tg=\n-----END PRIVATE KEY-----\n",
+  "client_email": "scoreteabot@socrateabot-oymv.iam.gserviceaccount.com",
+  "client_id": "102163859652581544965",
+  "auth_uri": "https://accounts.google.com/o/oauth2/auth",
+  "token_uri": "https://oauth2.googleapis.com/token",
+  "auth_provider_x509_cert_url": "https://www.googleapis.com/oauth2/v1/certs",
+  "client_x509_cert_url": "https://www.googleapis.com/robot/v1/metadata/x509/scoreteabot%40socrateabot-oymv.iam.gserviceaccount.com"
+}
